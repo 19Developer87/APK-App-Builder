@@ -1,0 +1,26 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build outputs
+bin/
+obj/
+Output/
+
+# Logs
+*.log
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# Node / Capacitor (optional but recommended)
+node_modules/
+android/.gradle/
+android/build/
+
+# App builder temp
+builder-settings.json

@@ -1,0 +1,10 @@
+Android App Builder
+Version 1.0
+
+Created by Craig Doughty
+Year: 2026
+
+Copyright © 2026 Craig Doughty
+All rights reserved.
+
+This software is provided as-is without warranty.

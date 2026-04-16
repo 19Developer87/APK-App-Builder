@@ -1,0 +1,9 @@
+$form = New-Object System.Windows.Forms.Form
+$form.Text = 'Android App Builder'
+$form.Size = New-Object System.Drawing.Size(980, 760)
+$form.StartPosition = 'CenterScreen'
+$form.MinimumSize = New-Object System.Drawing.Size(980, 760)
+$form.BackColor = $script:ColorBg
+$form.ForeColor = $script:ColorText
+$form.Font = New-Object System.Drawing.Font('Segoe UI', 9)
+$form.AllowDrop = $true

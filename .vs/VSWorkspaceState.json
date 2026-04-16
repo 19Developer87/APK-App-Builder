@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Config",
+    "\\Events",
+    "\\Files",
+    "\\Logging",
+    "\\Output",
+    "\\State",
+    "\\Styling",
+    "\\Themes",
+    "\\UI"
+  ],
+  "SelectedNode": "\\State\\UpdateChecker.ps1",
+  "PreviewInSolutionExplorer": false
+}

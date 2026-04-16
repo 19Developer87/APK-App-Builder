@@ -1,0 +1,87 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Users\\Craig\\Visual Studio\\Android-App-Builder-v1.0\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Users\\Craig\\Visual Studio\\Android-App-Builder-v1.0\\Main.ps1||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Main.ps1||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Users\\Craig\\Visual Studio\\Android-App-Builder-v1.0\\UI\\Dialogs.ps1||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:UI\\Dialogs.ps1||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Users\\Craig\\Visual Studio\\Android-App-Builder-v1.0\\State\\UpdateChecker.ps1||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:State\\UpdateChecker.ps1||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Users\\Craig\\Visual Studio\\Android-App-Builder-v1.0\\State\\Settings.ps1||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:State\\Settings.ps1||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Dialogs.ps1",
+              "DocumentMoniker": "D:\\Users\\Craig\\Visual Studio\\Android-App-Builder-v1.0\\UI\\Dialogs.ps1",
+              "RelativeDocumentMoniker": "UI\\Dialogs.ps1",
+              "ToolTip": "D:\\Users\\Craig\\Visual Studio\\Android-App-Builder-v1.0\\UI\\Dialogs.ps1",
+              "RelativeToolTip": "UI\\Dialogs.ps1",
+              "ViewState": "AgIAAKAAAAAAAAAAAAAkwNgAAAABAAAAAAAAAA==",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd\u002BUAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAWXSURBVEhLrVZNbBtVEP7W/7Edx2nqREmapGlaLpWAip\u002BqJcChSKBSCXHigIRahHprJS4VN3rqtVcuSHDooVckUiGkqpGKqlKVtjS0DcWxE//H9q53ba/3f5m3aztxbFcg\u002BKTZ93bmeb6ZN7PvmQNhYWHhyMrKyjqb/1sYhmGura39eOXKlct/EEilu5YBsG3bGRnh5uamZZrmLjEscjZEdEvXXREEwbp//7559erVlcXFxbfIXcBxOgSe9rgHNgXTnvah1xYMBhGNRrnl5eUPLl68\u002BBWRvsbUrrUfXvaIx\u002BMT586duxCLxejtn5MxeL0eqKqKcDiCpaWlI1NTU/PpdDpZLpe3yWy4q3bQl\u002BFgMqYcFIiroxIgEAggkUhwp06deu/8\u002BfNfHz16lG1vX6ZdQlbPTk33gqkHkXUgyy08fvwY9\u002B7dQyqV4qgn3jlz5swFMk2R\u002BJxFbQyp4W4MCsLVdYJYWJjH8eNvYnZ2FuPj46ymPhoXyTRL0pPlC5qmI22VQ\u002BIK0\u002B3W\u002B3x\u002BhEIjrIY4duxVnDx5ApOTk6w/oiROn3QwkHDHWT96bXsXuu8\u002Bnw8zMzPOfC/2ELIfDGLrz6qzrlfn4kUBd0\u002Ba1dXVdVaDvWAtn8kX4Pf7XFLSMTEtCoItaOssMjo2epAJyY1k6bvvv19RZDn94M7ta3ylvMGWv7BpbNsCX6shV9yGJxACFwwB/hAE04uiyqGgADzNJfghWH6UDdLrHuTIFpg5NPn5pctn3//ks0vxif1LbZfDm4aJRaHmCiWExydgjO5DKbQP\u002Bcg\u002B3JYDkEMxtMJx3BB9\u002BEWP4I4dxaoxips0v6mNYFUJcVk7wNVEidcVpeX6HUjIyFywLuXFOhCOUUZErlrINE3KiqNRwxtTUYz5gTtFCesNC8\u002BbOpKSjg1RxZaooFlvolbMpTSlxbdd9jeNU6eu2JAUFS2vHznFQLFlIk\u002BjSZ/BjYKMH9ICTs/HME2km2ITFVkFT1JtKmi0dDTFut2s8WuWZRXbBL2EjGQHNjRdA3FApAsnq5goqCaysg6edUUkjOsbIiqajY8WxmA0W0hVmkhW60iWG\u002BClJgp8zdJVrch5PM220\u002BE1pKiQzRWgBCOoarSVioU8Rc22dK0sQ6RM3p2Po2FY\u002BCkrEUkdRVFGVWpBqivw6DpUiW8Zpi56vF4K28XQGtK9h618CXIwipRiY6Nh4Kmo4VlZwn6vjbMHaSs9Jq49zOH6bxmIRGa3VHiJyGNoCFkG7Np2JfV0LVOXxO6t0VdD50mDpukoChIqdhC/N0w8b\u002Bj4q66xqwGfHh7Ds5KIbx/kEPd78MXL0zgSC0CneustDZaq0VyDUqsUs\u002BlkptloOH4Z\u002BjLs1LHKCxDoRxHOxjhn4LBPwyshEwmW1aMMbhdqCEWCqJoW/qw1EbY1vB7ncCIRxPLkCBI\u002Bw9bqdcm0LGrzHfRcHTtNYyOZzSPo4fDxQhjREb9zsnD0gQMjsDmK06QdKJedk4iaAp6pACqVKqKjMRycm8PdZynzm59LApVYdn262JUhY3OFEedqDUSoE1tyHTWehygIqDGp8aiTFAsFpFNJbKaTyGW2aO2oQ1gqFpDNZsheUvLpZE4Sqjv7SRi6pXXNRIuyepIt4cFWEY8cKeDRZh4P0zmqoQA7MoFQ4gC88QSebGag\u002B0IYnTyAfN1AKl9oNQR\u002B26A/Wq5HF11CRrR7Sw9NjmN/bNQ5OzkmgaArfiYBeIMjMGkrVdOGatgwbC\u002BidARK1KmWh\u002BY\u002B1IVqOdN22EX3trh169b69PQ0vXVZewLYDVffq\u002BugY6Pb58np0x9\u002BSS93SSSmZdizpTtOhpG5GEbG9INtHTgZ0g0dmpube9vr9b5ErxGm\u002B6\u002BQZbmZz\u002Bd/pSn7N97tVIewPTKiMRLW\u002B/8H2HHGOpRtZ/toA/4G/L5O9SWhIJwAAAAASUVORK5CYII=",
+              "WhenOpened": "2026-04-16T23:16:30.263Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UpdateChecker.ps1",
+              "DocumentMoniker": "D:\\Users\\Craig\\Visual Studio\\Android-App-Builder-v1.0\\State\\UpdateChecker.ps1",
+              "RelativeDocumentMoniker": "State\\UpdateChecker.ps1",
+              "ToolTip": "D:\\Users\\Craig\\Visual Studio\\Android-App-Builder-v1.0\\State\\UpdateChecker.ps1",
+              "RelativeToolTip": "State\\UpdateChecker.ps1",
+              "ViewState": "AgIAAMsAAAAAAAAAAAAkwAMBAAABAAAAAAAAAA==",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd\u002BUAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAWXSURBVEhLrVZNbBtVEP7W/7Edx2nqREmapGlaLpWAip\u002BqJcChSKBSCXHigIRahHprJS4VN3rqtVcuSHDooVckUiGkqpGKqlKVtjS0DcWxE//H9q53ba/3f5m3aztxbFcg\u002BKTZ93bmeb6ZN7PvmQNhYWHhyMrKyjqb/1sYhmGura39eOXKlct/EEilu5YBsG3bGRnh5uamZZrmLjEscjZEdEvXXREEwbp//7559erVlcXFxbfIXcBxOgSe9rgHNgXTnvah1xYMBhGNRrnl5eUPLl68\u002BBWRvsbUrrUfXvaIx\u002BMT586duxCLxejtn5MxeL0eqKqKcDiCpaWlI1NTU/PpdDpZLpe3yWy4q3bQl\u002BFgMqYcFIiroxIgEAggkUhwp06deu/8\u002BfNfHz16lG1vX6ZdQlbPTk33gqkHkXUgyy08fvwY9\u002B7dQyqV4qgn3jlz5swFMk2R\u002BJxFbQyp4W4MCsLVdYJYWJjH8eNvYnZ2FuPj46ymPhoXyTRL0pPlC5qmI22VQ\u002BIK0\u002B3W\u002B3x\u002BhEIjrIY4duxVnDx5ApOTk6w/oiROn3QwkHDHWT96bXsXuu8\u002Bnw8zMzPOfC/2ELIfDGLrz6qzrlfn4kUBd0\u002Ba1dXVdVaDvWAtn8kX4Pf7XFLSMTEtCoItaOssMjo2epAJyY1k6bvvv19RZDn94M7ta3ylvMGWv7BpbNsCX6shV9yGJxACFwwB/hAE04uiyqGgADzNJfghWH6UDdLrHuTIFpg5NPn5pctn3//ks0vxif1LbZfDm4aJRaHmCiWExydgjO5DKbQP\u002Bcg\u002B3JYDkEMxtMJx3BB9\u002BEWP4I4dxaoxips0v6mNYFUJcVk7wNVEidcVpeX6HUjIyFywLuXFOhCOUUZErlrINE3KiqNRwxtTUYz5gTtFCesNC8\u002BbOpKSjg1RxZaooFlvolbMpTSlxbdd9jeNU6eu2JAUFS2vHznFQLFlIk\u002BjSZ/BjYKMH9ICTs/HME2km2ITFVkFT1JtKmi0dDTFut2s8WuWZRXbBL2EjGQHNjRdA3FApAsnq5goqCaysg6edUUkjOsbIiqajY8WxmA0W0hVmkhW60iWG\u002BClJgp8zdJVrch5PM220\u002BE1pKiQzRWgBCOoarSVioU8Rc22dK0sQ6RM3p2Po2FY\u002BCkrEUkdRVFGVWpBqivw6DpUiW8Zpi56vF4K28XQGtK9h618CXIwipRiY6Nh4Kmo4VlZwn6vjbMHaSs9Jq49zOH6bxmIRGa3VHiJyGNoCFkG7Np2JfV0LVOXxO6t0VdD50mDpukoChIqdhC/N0w8b\u002Bj4q66xqwGfHh7Ds5KIbx/kEPd78MXL0zgSC0CneustDZaq0VyDUqsUs\u002BlkptloOH4Z\u002BjLs1LHKCxDoRxHOxjhn4LBPwyshEwmW1aMMbhdqCEWCqJoW/qw1EbY1vB7ncCIRxPLkCBI\u002Bw9bqdcm0LGrzHfRcHTtNYyOZzSPo4fDxQhjREb9zsnD0gQMjsDmK06QdKJedk4iaAp6pACqVKqKjMRycm8PdZynzm59LApVYdn262JUhY3OFEedqDUSoE1tyHTWehygIqDGp8aiTFAsFpFNJbKaTyGW2aO2oQ1gqFpDNZsheUvLpZE4Sqjv7SRi6pXXNRIuyepIt4cFWEY8cKeDRZh4P0zmqoQA7MoFQ4gC88QSebGag\u002B0IYnTyAfN1AKl9oNQR\u002B26A/Wq5HF11CRrR7Sw9NjmN/bNQ5OzkmgaArfiYBeIMjMGkrVdOGatgwbC\u002BidARK1KmWh\u002BY\u002B1IVqOdN22EX3trh169b69PQ0vXVZewLYDVffq\u002BugY6Pb58np0x9\u002BSS93SSSmZdizpTtOhpG5GEbG9INtHTgZ0g0dmpube9vr9b5ErxGm\u002B6\u002BQZbmZz\u002Bd/pSn7N97tVIewPTKiMRLW\u002B/8H2HHGOpRtZ/toA/4G/L5O9SWhIJwAAAAASUVORK5CYII=",
+              "WhenOpened": "2026-04-16T23:05:41.07Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Main.ps1",
+              "DocumentMoniker": "D:\\Users\\Craig\\Visual Studio\\Android-App-Builder-v1.0\\Main.ps1",
+              "RelativeDocumentMoniker": "Main.ps1",
+              "ToolTip": "D:\\Users\\Craig\\Visual Studio\\Android-App-Builder-v1.0\\Main.ps1",
+              "RelativeToolTip": "Main.ps1",
+              "ViewState": "AgIAAEoAAAAAAAAAAAAkwIIAAAABAAAAAAAAAA==",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd\u002BUAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAWXSURBVEhLrVZNbBtVEP7W/7Edx2nqREmapGlaLpWAip\u002BqJcChSKBSCXHigIRahHprJS4VN3rqtVcuSHDooVckUiGkqpGKqlKVtjS0DcWxE//H9q53ba/3f5m3aztxbFcg\u002BKTZ93bmeb6ZN7PvmQNhYWHhyMrKyjqb/1sYhmGura39eOXKlct/EEilu5YBsG3bGRnh5uamZZrmLjEscjZEdEvXXREEwbp//7559erVlcXFxbfIXcBxOgSe9rgHNgXTnvah1xYMBhGNRrnl5eUPLl68\u002BBWRvsbUrrUfXvaIx\u002BMT586duxCLxejtn5MxeL0eqKqKcDiCpaWlI1NTU/PpdDpZLpe3yWy4q3bQl\u002BFgMqYcFIiroxIgEAggkUhwp06deu/8\u002BfNfHz16lG1vX6ZdQlbPTk33gqkHkXUgyy08fvwY9\u002B7dQyqV4qgn3jlz5swFMk2R\u002BJxFbQyp4W4MCsLVdYJYWJjH8eNvYnZ2FuPj46ymPhoXyTRL0pPlC5qmI22VQ\u002BIK0\u002B3W\u002B3x\u002BhEIjrIY4duxVnDx5ApOTk6w/oiROn3QwkHDHWT96bXsXuu8\u002Bnw8zMzPOfC/2ELIfDGLrz6qzrlfn4kUBd0\u002Ba1dXVdVaDvWAtn8kX4Pf7XFLSMTEtCoItaOssMjo2epAJyY1k6bvvv19RZDn94M7ta3ylvMGWv7BpbNsCX6shV9yGJxACFwwB/hAE04uiyqGgADzNJfghWH6UDdLrHuTIFpg5NPn5pctn3//ks0vxif1LbZfDm4aJRaHmCiWExydgjO5DKbQP\u002Bcg\u002B3JYDkEMxtMJx3BB9\u002BEWP4I4dxaoxips0v6mNYFUJcVk7wNVEidcVpeX6HUjIyFywLuXFOhCOUUZErlrINE3KiqNRwxtTUYz5gTtFCesNC8\u002BbOpKSjg1RxZaooFlvolbMpTSlxbdd9jeNU6eu2JAUFS2vHznFQLFlIk\u002BjSZ/BjYKMH9ICTs/HME2km2ITFVkFT1JtKmi0dDTFut2s8WuWZRXbBL2EjGQHNjRdA3FApAsnq5goqCaysg6edUUkjOsbIiqajY8WxmA0W0hVmkhW60iWG\u002BClJgp8zdJVrch5PM220\u002BE1pKiQzRWgBCOoarSVioU8Rc22dK0sQ6RM3p2Po2FY\u002BCkrEUkdRVFGVWpBqivw6DpUiW8Zpi56vF4K28XQGtK9h618CXIwipRiY6Nh4Kmo4VlZwn6vjbMHaSs9Jq49zOH6bxmIRGa3VHiJyGNoCFkG7Np2JfV0LVOXxO6t0VdD50mDpukoChIqdhC/N0w8b\u002Bj4q66xqwGfHh7Ds5KIbx/kEPd78MXL0zgSC0CneustDZaq0VyDUqsUs\u002BlkptloOH4Z\u002BjLs1LHKCxDoRxHOxjhn4LBPwyshEwmW1aMMbhdqCEWCqJoW/qw1EbY1vB7ncCIRxPLkCBI\u002Bw9bqdcm0LGrzHfRcHTtNYyOZzSPo4fDxQhjREb9zsnD0gQMjsDmK06QdKJedk4iaAp6pACqVKqKjMRycm8PdZynzm59LApVYdn262JUhY3OFEedqDUSoE1tyHTWehygIqDGp8aiTFAsFpFNJbKaTyGW2aO2oQ1gqFpDNZsheUvLpZE4Sqjv7SRi6pXXNRIuyepIt4cFWEY8cKeDRZh4P0zmqoQA7MoFQ4gC88QSebGag\u002B0IYnTyAfN1AKl9oNQR\u002B26A/Wq5HF11CRrR7Sw9NjmN/bNQ5OzkmgaArfiYBeIMjMGkrVdOGatgwbC\u002BidARK1KmWh\u002BY\u002B1IVqOdN22EX3trh169b69PQ0vXVZewLYDVffq\u002BugY6Pb58np0x9\u002BSS93SSSmZdizpTtOhpG5GEbG9INtHTgZ0g0dmpube9vr9b5ErxGm\u002B6\u002BQZbmZz\u002Bd/pSn7N97tVIewPTKiMRLW\u002B/8H2HHGOpRtZ/toA/4G/L5O9SWhIJwAAAAASUVORK5CYII=",
+              "WhenOpened": "2026-04-16T20:25:36.923Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Settings.ps1",
+              "DocumentMoniker": "D:\\Users\\Craig\\Visual Studio\\Android-App-Builder-v1.0\\State\\Settings.ps1",
+              "RelativeDocumentMoniker": "State\\Settings.ps1",
+              "ToolTip": "D:\\Users\\Craig\\Visual Studio\\Android-App-Builder-v1.0\\State\\Settings.ps1",
+              "RelativeToolTip": "State\\Settings.ps1",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAOoAAAAAAAAAAAAAAA==",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd\u002BUAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAWXSURBVEhLrVZNbBtVEP7W/7Edx2nqREmapGlaLpWAip\u002BqJcChSKBSCXHigIRahHprJS4VN3rqtVcuSHDooVckUiGkqpGKqlKVtjS0DcWxE//H9q53ba/3f5m3aztxbFcg\u002BKTZ93bmeb6ZN7PvmQNhYWHhyMrKyjqb/1sYhmGura39eOXKlct/EEilu5YBsG3bGRnh5uamZZrmLjEscjZEdEvXXREEwbp//7559erVlcXFxbfIXcBxOgSe9rgHNgXTnvah1xYMBhGNRrnl5eUPLl68\u002BBWRvsbUrrUfXvaIx\u002BMT586duxCLxejtn5MxeL0eqKqKcDiCpaWlI1NTU/PpdDpZLpe3yWy4q3bQl\u002BFgMqYcFIiroxIgEAggkUhwp06deu/8\u002BfNfHz16lG1vX6ZdQlbPTk33gqkHkXUgyy08fvwY9\u002B7dQyqV4qgn3jlz5swFMk2R\u002BJxFbQyp4W4MCsLVdYJYWJjH8eNvYnZ2FuPj46ymPhoXyTRL0pPlC5qmI22VQ\u002BIK0\u002B3W\u002B3x\u002BhEIjrIY4duxVnDx5ApOTk6w/oiROn3QwkHDHWT96bXsXuu8\u002Bnw8zMzPOfC/2ELIfDGLrz6qzrlfn4kUBd0\u002Ba1dXVdVaDvWAtn8kX4Pf7XFLSMTEtCoItaOssMjo2epAJyY1k6bvvv19RZDn94M7ta3ylvMGWv7BpbNsCX6shV9yGJxACFwwB/hAE04uiyqGgADzNJfghWH6UDdLrHuTIFpg5NPn5pctn3//ks0vxif1LbZfDm4aJRaHmCiWExydgjO5DKbQP\u002Bcg\u002B3JYDkEMxtMJx3BB9\u002BEWP4I4dxaoxips0v6mNYFUJcVk7wNVEidcVpeX6HUjIyFywLuXFOhCOUUZErlrINE3KiqNRwxtTUYz5gTtFCesNC8\u002BbOpKSjg1RxZaooFlvolbMpTSlxbdd9jeNU6eu2JAUFS2vHznFQLFlIk\u002BjSZ/BjYKMH9ICTs/HME2km2ITFVkFT1JtKmi0dDTFut2s8WuWZRXbBL2EjGQHNjRdA3FApAsnq5goqCaysg6edUUkjOsbIiqajY8WxmA0W0hVmkhW60iWG\u002BClJgp8zdJVrch5PM220\u002BE1pKiQzRWgBCOoarSVioU8Rc22dK0sQ6RM3p2Po2FY\u002BCkrEUkdRVFGVWpBqivw6DpUiW8Zpi56vF4K28XQGtK9h618CXIwipRiY6Nh4Kmo4VlZwn6vjbMHaSs9Jq49zOH6bxmIRGa3VHiJyGNoCFkG7Np2JfV0LVOXxO6t0VdD50mDpukoChIqdhC/N0w8b\u002Bj4q66xqwGfHh7Ds5KIbx/kEPd78MXL0zgSC0CneustDZaq0VyDUqsUs\u002BlkptloOH4Z\u002BjLs1LHKCxDoRxHOxjhn4LBPwyshEwmW1aMMbhdqCEWCqJoW/qw1EbY1vB7ncCIRxPLkCBI\u002Bw9bqdcm0LGrzHfRcHTtNYyOZzSPo4fDxQhjREb9zsnD0gQMjsDmK06QdKJedk4iaAp6pACqVKqKjMRycm8PdZynzm59LApVYdn262JUhY3OFEedqDUSoE1tyHTWehygIqDGp8aiTFAsFpFNJbKaTyGW2aO2oQ1gqFpDNZsheUvLpZE4Sqjv7SRi6pXXNRIuyepIt4cFWEY8cKeDRZh4P0zmqoQA7MoFQ4gC88QSebGag\u002B0IYnTyAfN1AKl9oNQR\u002B26A/Wq5HF11CRrR7Sw9NjmN/bNQ5OzkmgaArfiYBeIMjMGkrVdOGatgwbC\u002BidARK1KmWh\u002BY\u002B1IVqOdN22EX3trh169b69PQ0vXVZewLYDVffq\u002BugY6Pb58np0x9\u002BSS93SSSmZdizpTtOhpG5GEbG9INtHTgZ0g0dmpube9vr9b5ErxGm\u002B6\u002BQZbmZz\u002Bd/pSn7N97tVIewPTKiMRLW\u002B/8H2HHGOpRtZ/toA/4G/L5O9SWhIJwAAAAASUVORK5CYII=",
+              "WhenOpened": "2026-04-15T00:41:36.761Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

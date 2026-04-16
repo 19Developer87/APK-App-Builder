@@ -1,0 +1,143 @@
+Android App Builder v1.0
+
+How to use:
+1. Keep all folders and files together in this folder.
+2. Run AndroidAppBuilder.exe
+3. Do not move the .exe away from the included script folders.
+4. If SmartScreen appears, click More info > Run anyway.
+
+Requirements:
+- Node.js
+- Android Studio or valid Android SDK + Java
+- Internet connection for npm downloads
+
+Android App Builder v1.0
+
+OVERVIEW
+Android App Builder is a Windows tool that helps you quickly create and build Android apps from your web projects (HTML, CSS, JavaScript).
+It automates:
+
+Capacitor project setup
+Android platform configuration
+Asset generation (icons & splash)
+APK build process
+APK installation to device
+
+This tool is designed to simplify the setup process, especially for beginners.
+
+HOW TO USE
+
+Extract this folder.
+Keep all files and folders together.
+Run:
+AndroidAppBuilder.exe
+Fill in the required fields:
+
+Base Folder
+Project Name
+App Name
+App ID
+
+
+Select your index.html file.
+(Optional) Select PNG assets.
+Click "Build Project".
+
+After a successful build:
+
+You can open the APK folder.
+You can install the APK to your device.
+
+
+REQUIREMENTS
+You must have the following installed:
+Node.js
+
+Required for npm package installation
+Download: https://nodejs.org/
+
+Android SDK
+
+Required for building APKs
+Usually installed via Android Studio
+
+Java (JDK or JBR)
+
+Required for Gradle builds
+Can use:
+
+Android Studio JBR
+OpenJDK
+Oracle JDK
+
+
+
+Recommended:
+Android Studio
+
+Easiest way to manage SDK, tools, and emulator
+
+
+ANDROID PHONE SETUP (FOR INSTALLING APK)
+To install APKs directly to your phone:
+
+Enable Developer Options on your phone.
+Enable USB Debugging.
+Connect your phone via USB.
+Accept the debugging prompt on your device.
+
+
+IMPORTANT NOTES
+
+Do NOT move the .exe file away from this folder.
+All included folders are required for the app to work.
+The app depends on these scripts being present.
+
+
+TROUBLESHOOTING
+Build Button Disabled
+
+Ensure all required fields are filled
+Ensure index.html is selected
+Ensure App ID is valid
+
+APK Not Found
+
+Build may have failed
+Check the log for errors
+
+No Device Detected
+
+Ensure USB is connected
+Enable USB debugging
+Accept the device prompt
+
+Cannot Delete Project Folder
+
+Close Android Studio
+Close all PowerShell or terminal windows
+Close the App Builder
+Wait a few seconds and try again
+
+If it still fails:
+
+Restart your PC and try again
+
+Advanced fix:
+Open PowerShell as Administrator and run:
+Remove-Item "C:\path\to\your\folder" -Recurse -Force
+
+TIPS
+
+Keep project names simple (no special characters)
+Use a proper App ID format:
+com.company.appname
+Always check the build log if something fails
+
+
+VERSION
+Version: 1.0
+Created by Craig Doughty
+Year: 2026
+
+END
