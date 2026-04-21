@@ -1,0 +1,58 @@
+# =========================
+# Node
+# =========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# =========================
+# Build outputs
+# =========================
+dist/
+build/
+www/
+
+# =========================
+# Android / Gradle
+# =========================
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+android/captures/
+
+# =========================
+# IDE / Editor
+# =========================
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.vs/
+
+# =========================
+# System files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Logs
+# =========================
+*.log
+
+# =========================
+# Temporary / cache
+# =========================
+tmp/
+temp/
+.cache/
+
+# =========================
+# Optional (your builder output)
+# =========================
+*.apk
+*.aab
