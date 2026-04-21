@@ -20,7 +20,7 @@ function Show-SettingsDialog {
     $dialog = New-Object System.Windows.Forms.Form
     $dialog.Text = 'Settings'
     $dialog.StartPosition = 'CenterParent'
-    $dialog.Size = New-Object System.Drawing.Size(430, 360)
+    $dialog.Size = New-Object System.Drawing.Size(430, 390)
     $dialog.FormBorderStyle = 'FixedDialog'
     $dialog.MaximizeBox = $false
     $dialog.MinimizeBox = $false
@@ -50,7 +50,7 @@ function Show-SettingsDialog {
 
     $aboutPanel = New-Object System.Windows.Forms.Panel
     $aboutPanel.Location = New-Object System.Drawing.Point(20, 96)
-    $aboutPanel.Size = New-Object System.Drawing.Size(374, 175)
+    $aboutPanel.Size = New-Object System.Drawing.Size(374, 205)
     $aboutPanel.BorderStyle = 'FixedSingle'
     $aboutPanel.BackColor = if ($script:IsDarkMode) { $script:DarkColorLogBg } else { $script:ColorLogBg }
     $dialog.Controls.Add($aboutPanel)
@@ -69,44 +69,53 @@ function Show-SettingsDialog {
     Style-Label -Label $lblAboutName -Size 9.5 -Bold $true
     $aboutPanel.Controls.Add($lblAboutName)
 
-    $lblAboutVersion = New-Object System.Windows.Forms.Label
-    $lblAboutVersion.Text = $script:AppVersion
-    $lblAboutVersion.Location = New-Object System.Drawing.Point(12, 60)
-    $lblAboutVersion.Size = New-Object System.Drawing.Size(250, 18)
-    Style-Label -Label $lblAboutVersion -Muted $true -Size 9
-    $aboutPanel.Controls.Add($lblAboutVersion)
+    $lblInstalledVersion = New-Object System.Windows.Forms.Label
+    $lblInstalledVersion.Text = "Installed Version: $($script:AppVersionNumber)"
+    $lblInstalledVersion.Location = New-Object System.Drawing.Point(12, 60)
+    $lblInstalledVersion.Size = New-Object System.Drawing.Size(250, 18)
+    Style-Label -Label $lblInstalledVersion -Muted $true -Size 9
+    $aboutPanel.Controls.Add($lblInstalledVersion)
+
+    $latestStatusText = if ([string]::IsNullOrWhiteSpace($script:LatestAvailableVersionStatus)) { 'Not checked yet' } else { $script:LatestAvailableVersionStatus }
+
+    $lblLatestVersion = New-Object System.Windows.Forms.Label
+    $lblLatestVersion.Text = "Latest Available: $latestStatusText"
+    $lblLatestVersion.Location = New-Object System.Drawing.Point(12, 80)
+    $lblLatestVersion.Size = New-Object System.Drawing.Size(320, 18)
+    Style-Label -Label $lblLatestVersion -Muted $true -Size 9
+    $aboutPanel.Controls.Add($lblLatestVersion)
 
     $lblAboutAuthor = New-Object System.Windows.Forms.Label
     $lblAboutAuthor.Text = "Created by $($script:AppAuthor)"
-    $lblAboutAuthor.Location = New-Object System.Drawing.Point(12, 80)
+    $lblAboutAuthor.Location = New-Object System.Drawing.Point(12, 102)
     $lblAboutAuthor.Size = New-Object System.Drawing.Size(250, 18)
     Style-Label -Label $lblAboutAuthor -Muted $true -Size 9
     $aboutPanel.Controls.Add($lblAboutAuthor)
 
     $lblAboutYear = New-Object System.Windows.Forms.Label
     $lblAboutYear.Text = "Year: $($script:AppYear)"
-    $lblAboutYear.Location = New-Object System.Drawing.Point(12, 98)
+    $lblAboutYear.Location = New-Object System.Drawing.Point(12, 120)
     $lblAboutYear.Size = New-Object System.Drawing.Size(250, 18)
     Style-Label -Label $lblAboutYear -Muted $true -Size 9
     $aboutPanel.Controls.Add($lblAboutYear)
 
     $lblAboutCopyright = New-Object System.Windows.Forms.Label
     $lblAboutCopyright.Text = $script:AppCopyright
-    $lblAboutCopyright.Location = New-Object System.Drawing.Point(12, 118)
+    $lblAboutCopyright.Location = New-Object System.Drawing.Point(12, 140)
     $lblAboutCopyright.Size = New-Object System.Drawing.Size(345, 18)
     Style-Label -Label $lblAboutCopyright -Muted $true -Size 8.5
     $aboutPanel.Controls.Add($lblAboutCopyright)
 
     $btnCheckUpdates = New-Object System.Windows.Forms.Button
     $btnCheckUpdates.Text = 'Check for Updates'
-    $btnCheckUpdates.Location = New-Object System.Drawing.Point(12, 140)
+    $btnCheckUpdates.Location = New-Object System.Drawing.Point(12, 168)
     $btnCheckUpdates.Size = New-Object System.Drawing.Size(135, 26)
     Style-Button -Button $btnCheckUpdates -BackColor $(if ($script:IsDarkMode) { $script:DarkColorButton } else { $script:ColorButton }) -ForeColor $(if ($script:IsDarkMode) { $script:DarkColorText } else { $script:ColorText })
     $aboutPanel.Controls.Add($btnCheckUpdates)
 
     $btnCloseSettings = New-Object System.Windows.Forms.Button
     $btnCloseSettings.Text = 'Close'
-    $btnCloseSettings.Location = New-Object System.Drawing.Point(304, 286)
+    $btnCloseSettings.Location = New-Object System.Drawing.Point(304, 316)
     $btnCloseSettings.Size = New-Object System.Drawing.Size(90, 30)
     Style-Button -Button $btnCloseSettings -BackColor $(if ($script:IsDarkMode) { $script:DarkColorButton } else { $script:ColorButton }) -ForeColor $(if ($script:IsDarkMode) { $script:DarkColorText } else { $script:ColorText })
     $dialog.Controls.Add($btnCloseSettings)
@@ -133,6 +142,9 @@ function Show-SettingsDialog {
     $btnCheckUpdates.Add_Click({
         if (Get-Command Invoke-CheckForUpdates -ErrorAction SilentlyContinue) {
             Invoke-CheckForUpdates -Interactive:$true -OnlyNotifyIfUpdateAvailable:$false
+            $lblInstalledVersion.Text = "Installed Version: $($script:AppVersionNumber)"
+            $latestStatusTextInner = if ([string]::IsNullOrWhiteSpace($script:LatestAvailableVersionStatus)) { 'Not checked yet' } else { $script:LatestAvailableVersionStatus }
+            $lblLatestVersion.Text = "Latest Available: $latestStatusTextInner"
         } else {
             [System.Windows.Forms.MessageBox]::Show(
                 'Update checker is not available.',

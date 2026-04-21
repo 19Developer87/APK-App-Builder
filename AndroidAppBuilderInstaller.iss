@@ -7,7 +7,7 @@
 AppId={{8F1B0C6B-6C0D-4B5E-9C5F-6B3A1A4B91A1}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
-AppVerName=Android App Builder 1.0
+AppVerName=Android App Builder {#MyAppVersion}
 AppPublisher={#MyAppPublisher}
 
 DefaultDirName={autopf}\Android App Builder
@@ -24,9 +24,10 @@ PrivilegesRequired=admin
 ArchitecturesInstallIn64BitMode=x64compatible
 
 UninstallDisplayIcon={app}\{#MyAppExeName}
-SetupIconFile="D:\Users\Craig\Visual Studio\Android-App-Builder\appicon.ico"
-WizardImageFile="D:\Users\Craig\Visual Studio\Android-App-Builder\installer-large.bmp"
-LicenseFile="D:\Users\Craig\Visual Studio\Android-App-Builder\license.txt"
+SetupIconFile=appicon.ico
+WizardImageFile=installer-large.bmp
+LicenseFile=license.txt
+
 DisableProgramGroupPage=yes
 
 VersionInfoVersion={#MyAppVersion}
@@ -52,16 +53,19 @@ Name: "desktopicon"; Description: "Create a desktop shortcut"
 Filename: "{app}\{#MyAppExeName}"; Flags: nowait
 
 [Messages]
-english.SetupWindowTitle=Setup - Android App Builder 1.0
+english.SetupWindowTitle=Setup - Android App Builder {#MyAppVersion}
 
 [Code]
 function GetUninstallString(): String;
 var
   S: String;
 begin
-  if RegQueryStringValue(HKLM,
+  if RegQueryStringValue(
+    HKLM,
     'Software\Microsoft\Windows\CurrentVersion\Uninstall\{8F1B0C6B-6C0D-4B5E-9C5F-6B3A1A4B91A1}_is1',
-    'UninstallString', S) then
+    'UninstallString',
+    S
+  ) then
     Result := S
   else
     Result := '';

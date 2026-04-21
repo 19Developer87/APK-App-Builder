@@ -2,12 +2,18 @@ Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 
 $script:AppTitle = 'Android App Builder'
-$script:AppVersionNumber = '1.0'
-$script:AppVersion = "$($script:AppTitle)
-version $($script:AppVersionNumber)"
+
+$versionFile = Join-Path $script:AppBasePath 'version.txt'
+if (Test-Path $versionFile) {
+    $script:AppVersionNumber = (Get-Content $versionFile -Raw).Trim()
+} else {
+    $script:AppVersionNumber = '1.0'
+}
+
+$script:AppVersion = "Version $($script:AppVersionNumber)"
 $script:AppAuthor = 'Craig Doughty'
 $script:AppYear = '2026'
-$script:AppCopyright = 'Copyright ' + [char]0x00A9 + ' Craig Doughty. All rights reserved.'
+$script:AppCopyright = 'Copyright 2026 Craig Doughty. All rights reserved.'
 $script:AppDescription = 'Create and prepare Capacitor Android projects faster.'
 
 $script:RootPath = Split-Path -Parent $PSScriptRoot

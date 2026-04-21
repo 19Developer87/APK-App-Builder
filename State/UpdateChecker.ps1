@@ -18,6 +18,14 @@ if ($null -eq $script:HasShownUpdateCheckThisSession) {
     $script:HasShownUpdateCheckThisSession = $false
 }
 
+if ($null -eq $script:LatestAvailableVersion) {
+    $script:LatestAvailableVersion = ''
+}
+
+if ($null -eq $script:LatestAvailableVersionStatus) {
+    $script:LatestAvailableVersionStatus = 'Not checked yet'
+}
+
 function Get-NormalizedVersionNumber {
     param([string]$Value)
 
@@ -71,6 +79,8 @@ function Get-LatestVersionInfo {
         }
 
         $result.IsConfigured = $true
+
+        [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
         $response = Invoke-RestMethod -Uri $uri -Method Get -TimeoutSec 15 -Headers @{
             'Cache-Control' = 'no-cache'
@@ -128,10 +138,8 @@ function Download-UpdateInstaller {
     $installerPath = Join-Path $tempFolder ("AndroidAppBuilderSetup-" + $safeVersion + ".exe")
 
     try {
-        # 🔥 FORCE TLS 1.2 (CRITICAL for GitHub)
         [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
-        # 🔥 Use Invoke-WebRequest with redirect support
         Invoke-WebRequest `
             -Uri $DownloadUrl `
             -OutFile $installerPath `
@@ -166,7 +174,6 @@ function Start-SilentInstallerAfterExit {
     }
 
     $escapedInstallerPath = $InstallerPath.Replace('"', '""')
-
     $cmdArgs = '/c ping 127.0.0.1 -n 3 > nul && start "" "' + $escapedInstallerPath + '" /VERYSILENT /SUPPRESSMSGBOXES /NORESTART'
 
     Start-Process -FilePath 'cmd.exe' -ArgumentList $cmdArgs -WindowStyle Hidden
@@ -245,6 +252,9 @@ function Invoke-CheckForUpdates {
         $latestInfo = Get-LatestVersionInfo
 
         if (-not $latestInfo.IsConfigured) {
+            $script:LatestAvailableVersion = ''
+            $script:LatestAvailableVersionStatus = 'Not configured'
+
             if ($Interactive) {
                 [System.Windows.Forms.MessageBox]::Show(
                     "Update checking is not configured yet.`r`n`r`nSet `\$script:UpdateManifestUrl in State\UpdateChecker.ps1 to your GitHub-hosted version.json file.",
@@ -257,6 +267,9 @@ function Invoke-CheckForUpdates {
         }
 
         if (-not $latestInfo.Success) {
+            $script:LatestAvailableVersion = ''
+            $script:LatestAvailableVersionStatus = 'Check failed'
+
             if ($Interactive) {
                 $message = "Could not check for updates."
                 if (-not [string]::IsNullOrWhiteSpace($latestInfo.ErrorMessage)) {
@@ -274,10 +287,13 @@ function Invoke-CheckForUpdates {
         }
 
         $latestVersion = Get-NormalizedVersionNumber $latestInfo.Version
+        $script:LatestAvailableVersion = $latestVersion
+
         $isNewer = Test-IsNewerVersion -CurrentVersion $currentVersion -LatestVersion $latestVersion
 
         if ($isNewer) {
             $script:HasShownUpdateCheckThisSession = $true
+            $script:LatestAvailableVersionStatus = $latestVersion
 
             $message = @(
                 "A newer version is available."
@@ -313,6 +329,8 @@ function Invoke-CheckForUpdates {
             return
         }
 
+        $script:LatestAvailableVersionStatus = 'Up to date'
+
         if ($Interactive -and -not $OnlyNotifyIfUpdateAvailable) {
             [System.Windows.Forms.MessageBox]::Show(
                 "You are up to date.`r`n`r`nCurrent version: $currentVersion",
@@ -323,6 +341,8 @@ function Invoke-CheckForUpdates {
         }
     }
     catch {
+        $script:LatestAvailableVersionStatus = 'Check failed'
+
         if ($Interactive) {
             [System.Windows.Forms.MessageBox]::Show(
                 $_.Exception.Message,
