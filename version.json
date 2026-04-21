@@ -1,3 +1,11 @@
+<<<<<<< HEAD
 git add version.json
 git commit -m "Add version.json"
 git push
+=======
+{
+  "version": "1.0",
+  "downloadUrl": "https://github.com/19Developer87/APK-App-Builder/releases/download/v1.1/AndroidAppBuilderSetup-v1.1.exe",
+  "notes": "Bug fixes and improvements."
+}
+>>>>>>> ec16564816185ac0f6dfc10b03c4f241b5f0ed4c
