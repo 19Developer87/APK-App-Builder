@@ -24,10 +24,9 @@ PrivilegesRequired=admin
 ArchitecturesInstallIn64BitMode=x64compatible
 
 UninstallDisplayIcon={app}\{#MyAppExeName}
-SetupIconFile=appicon.ico
-WizardImageFile=installer-large.bmp
-LicenseFile=license.txt
-
+SetupIconFile="D:\Users\Craig\Visual Studio\Android-App-Builder\appicon.ico"
+WizardImageFile="D:\Users\Craig\Visual Studio\Android-App-Builder\installer-large.bmp"
+LicenseFile="D:\Users\Craig\Visual Studio\Android-App-Builder\license.txt"
 DisableProgramGroupPage=yes
 
 VersionInfoVersion={#MyAppVersion}
