@@ -1,26 +1,57 @@
-# Visual Studio
-.vs/
-*.user
+# =========================
+# Node
+# =========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# =========================
+# Build outputs
+# =========================
+dist/
+build/
+www/
+
+# =========================
+# Android / Gradle
+# =========================
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+android/captures/
+
+# =========================
+# IDE / Editor
+# =========================
+.vscode/
+.idea/
 *.suo
+*.user
 *.userosscache
 *.sln.docstates
 
-# Build outputs
-bin/
-obj/
-Output/
+# =========================
+# System files
+# =========================
+.DS_Store
+Thumbs.db
 
+# =========================
 # Logs
+# =========================
 *.log
 
-# OS files
-Thumbs.db
-.DS_Store
+# =========================
+# Temporary / cache
+# =========================
+tmp/
+temp/
+.cache/
 
-# Node / Capacitor (optional but recommended)
-node_modules/
-android/.gradle/
-android/build/
-
-# App builder temp
-builder-settings.json
+# =========================
+# Optional (your builder output)
+# =========================
+*.apk
+*.aab

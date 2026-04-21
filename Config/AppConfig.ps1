@@ -2,7 +2,9 @@ Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 
 $script:AppTitle = 'Android App Builder'
-$script:AppVersion = 'Version 1.0'
+$script:AppVersionNumber = '1.0'
+$script:AppVersion = "$($script:AppTitle)
+version $($script:AppVersionNumber)"
 $script:AppAuthor = 'Craig Doughty'
 $script:AppYear = '2026'
 $script:AppCopyright = 'Copyright ' + [char]0x00A9 + ' Craig Doughty. All rights reserved.'

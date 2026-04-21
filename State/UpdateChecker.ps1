@@ -1,14 +1,6 @@
 # ---------------- UPDATE CONFIG ----------------
-# Set these to your real GitHub raw/version URL and release/download page when ready.
-# Example manifest URL:
-# https://raw.githubusercontent.com/<YOUR-USER>/<YOUR-REPO>/main/version.json
-#
-# Example version.json:
-# {
-#   "version": "1.1",
-#   "downloadUrl": "https://github.com/<YOUR-USER>/<YOUR-REPO>/releases/latest",
-#   "notes": "Bug fixes and installer improvements."
-# }
+$script:UpdateManifestUrl = 'https://raw.githubusercontent.com/19Developer87/APK-App-Builder/main/version.json'
+$script:FallbackUpdateDownloadUrl = 'https://github.com/19Developer87/APK-App-Builder/releases/latest'
 
 if (-not $script:AppVersionNumber) {
     if ($script:AppVersion -and ($script:AppVersion -match '(\d+(\.\d+)+)')) {
@@ -16,14 +8,6 @@ if (-not $script:AppVersionNumber) {
     } else {
         $script:AppVersionNumber = '1.0'
     }
-}
-
-if ($null -eq $script:UpdateManifestUrl) {
-    $script:UpdateManifestUrl = ''
-}
-
-if ($null -eq $script:FallbackUpdateDownloadUrl) {
-    $script:FallbackUpdateDownloadUrl = ''
 }
 
 if ($null -eq $script:AutoCheckUpdatesOnStartup) {
@@ -88,7 +72,7 @@ function Get-LatestVersionInfo {
 
         $result.IsConfigured = $true
 
-        $response = Invoke-RestMethod -Uri $uri -Method Get -TimeoutSec 10 -Headers @{
+        $response = Invoke-RestMethod -Uri $uri -Method Get -TimeoutSec 15 -Headers @{
             'Cache-Control' = 'no-cache'
             'Pragma'        = 'no-cache'
         }
@@ -122,6 +106,107 @@ function Get-LatestVersionInfo {
     catch {
         $result.ErrorMessage = $_.Exception.Message
         return [pscustomobject]$result
+    }
+}
+
+function Download-UpdateInstaller {
+    param(
+        [string]$DownloadUrl,
+        [string]$LatestVersion
+    )
+
+    if ([string]::IsNullOrWhiteSpace($DownloadUrl)) {
+        throw 'No download URL was provided.'
+    }
+
+    $tempFolder = Join-Path $env:TEMP 'AndroidAppBuilderUpdater'
+    if (-not (Test-Path $tempFolder)) {
+        New-Item -ItemType Directory -Path $tempFolder -Force | Out-Null
+    }
+
+    $safeVersion = ($LatestVersion -replace '[^0-9\.]', '_')
+    $installerPath = Join-Path $tempFolder ("AndroidAppBuilderSetup-" + $safeVersion + ".exe")
+
+    try {
+        # 🔥 FORCE TLS 1.2 (CRITICAL for GitHub)
+        [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+
+        # 🔥 Use Invoke-WebRequest with redirect support
+        Invoke-WebRequest `
+            -Uri $DownloadUrl `
+            -OutFile $installerPath `
+            -UseBasicParsing `
+            -Headers @{ "User-Agent" = "AndroidAppBuilderUpdater" } `
+            -MaximumRedirection 10 `
+            -TimeoutSec 120
+    }
+    catch {
+        throw "Download failed: $($_.Exception.Message)"
+    }
+
+    if (-not (Test-Path $installerPath)) {
+        throw 'Installer file was not downloaded.'
+    }
+
+    $fileInfo = Get-Item $installerPath
+    if ($fileInfo.Length -lt 100000) {
+        throw 'Downloaded file is too small (likely failed download).'
+    }
+
+    return $installerPath
+}
+
+function Start-SilentInstallerAfterExit {
+    param(
+        [string]$InstallerPath
+    )
+
+    if ([string]::IsNullOrWhiteSpace($InstallerPath) -or -not (Test-Path $InstallerPath)) {
+        throw 'Installer file was not found.'
+    }
+
+    $escapedInstallerPath = $InstallerPath.Replace('"', '""')
+
+    $cmdArgs = '/c ping 127.0.0.1 -n 3 > nul && start "" "' + $escapedInstallerPath + '" /VERYSILENT /SUPPRESSMSGBOXES /NORESTART'
+
+    Start-Process -FilePath 'cmd.exe' -ArgumentList $cmdArgs -WindowStyle Hidden
+}
+
+function Install-UpdateNow {
+    param(
+        [string]$DownloadUrl,
+        [string]$LatestVersion
+    )
+
+    try {
+        $installerPath = Download-UpdateInstaller -DownloadUrl $DownloadUrl -LatestVersion $LatestVersion
+
+        $confirm = [System.Windows.Forms.MessageBox]::Show(
+            "The update installer has been downloaded.`r`n`r`nThe app will now close and start the update automatically.`r`n`r`nContinue?",
+            'Install Update',
+            [System.Windows.Forms.MessageBoxButtons]::YesNo,
+            [System.Windows.Forms.MessageBoxIcon]::Question
+        )
+
+        if ($confirm -ne [System.Windows.Forms.DialogResult]::Yes) {
+            return
+        }
+
+        Start-SilentInstallerAfterExit -InstallerPath $installerPath
+
+        if ($script:form) {
+            [System.Windows.Forms.Application]::Exit()
+        } else {
+            exit
+        }
+    }
+    catch {
+        [System.Windows.Forms.MessageBox]::Show(
+            $_.Exception.Message,
+            'Install Update Failed',
+            [System.Windows.Forms.MessageBoxButtons]::OK,
+            [System.Windows.Forms.MessageBoxIcon]::Error
+        ) | Out-Null
     }
 }
 
@@ -209,30 +294,20 @@ function Invoke-CheckForUpdates {
                 )
             }
 
-            if (-not [string]::IsNullOrWhiteSpace($latestInfo.DownloadUrl)) {
-                $message += @(
-                    ""
-                    "Open the download page now?"
-                )
+            $message += @(
+                ""
+                "Would you like to download and install it now?"
+            )
 
-                $result = [System.Windows.Forms.MessageBox]::Show(
-                    ($message -join "`r`n"),
-                    'Update Available',
-                    [System.Windows.Forms.MessageBoxButtons]::YesNo,
-                    [System.Windows.Forms.MessageBoxIcon]::Information
-                )
+            $result = [System.Windows.Forms.MessageBox]::Show(
+                ($message -join "`r`n"),
+                'Update Available',
+                [System.Windows.Forms.MessageBoxButtons]::YesNo,
+                [System.Windows.Forms.MessageBoxIcon]::Information
+            )
 
-                if ($result -eq [System.Windows.Forms.DialogResult]::Yes) {
-                    Open-UpdateDownloadPage -Url $latestInfo.DownloadUrl
-                }
-            }
-            elseif ($Interactive -or -not $OnlyNotifyIfUpdateAvailable) {
-                [System.Windows.Forms.MessageBox]::Show(
-                    ($message -join "`r`n"),
-                    'Update Available',
-                    [System.Windows.Forms.MessageBoxButtons]::OK,
-                    [System.Windows.Forms.MessageBoxIcon]::Information
-                ) | Out-Null
+            if ($result -eq [System.Windows.Forms.DialogResult]::Yes) {
+                Install-UpdateNow -DownloadUrl $latestInfo.DownloadUrl -LatestVersion $latestVersion
             }
 
             return

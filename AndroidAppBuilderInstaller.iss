@@ -50,7 +50,7 @@ Name: "{group}\Uninstall Android App Builder"; Filename: "{uninstallexe}"
 Name: "desktopicon"; Description: "Create a desktop shortcut"
 
 [Run]
-Filename: "{app}\{#MyAppExeName}"; Description: "Launch Android App Builder"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\{#MyAppExeName}"; Flags: nowait
 
 [Messages]
 english.SetupWindowTitle=Setup - Android App Builder 1.0
