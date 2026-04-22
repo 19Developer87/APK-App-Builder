@@ -1,6 +1,7 @@
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 
+# ---------------- APP IDENTITY ----------------
 $script:AppTitle = 'Android App Builder'
 
 $versionFile = Join-Path $script:AppBasePath 'version.txt'
@@ -16,7 +17,8 @@ $script:AppYear = '2026'
 $script:AppCopyright = 'Copyright 2026 Craig Doughty. All rights reserved.'
 $script:AppDescription = 'Create and prepare Capacitor Android projects faster.'
 
-$script:RootPath = Split-Path -Parent $PSScriptRoot
+# ---------------- PATHS / STATE ----------------
+$script:RootPath = $script:AppBasePath
 $script:SettingsPath = Join-Path $script:RootPath 'builder-settings.json'
 
 $script:IsDarkMode = $false
@@ -32,6 +34,23 @@ $script:JavaHomePath = ''
 $script:AndroidSdkPath = ''
 $script:UseLatestCapacitor = $false
 $script:BuildApkAfterSetup = $false
+
+# ---------------- ENVIRONMENT SETUP ----------------
+$script:RequiredAndroidPlatformPackage = 'platforms;android-35'
+$script:RequiredAndroidBuildToolsPackage = 'build-tools;35.0.0'
+$script:RequiredAndroidPlatformToolsPackage = 'platform-tools'
+
+if ($null -eq $script:AutoCheckUpdatesOnStartup) {
+    $script:AutoCheckUpdatesOnStartup = $true
+}
+
+if ($null -eq $script:LatestAvailableVersion) {
+    $script:LatestAvailableVersion = ''
+}
+
+if ($null -eq $script:LatestAvailableVersionStatus) {
+    $script:LatestAvailableVersionStatus = 'Not checked yet'
+}
 
 # ---------------- LIGHT THEME ----------------
 $script:ColorBg = [System.Drawing.Color]::FromArgb(245, 246, 248)
@@ -50,6 +69,10 @@ $script:ColorLogSuccess = [System.Drawing.Color]::FromArgb(34, 139, 34)
 $script:ColorLogWarning = [System.Drawing.Color]::FromArgb(184, 134, 11)
 $script:ColorLogError = [System.Drawing.Color]::FromArgb(178, 34, 34)
 
+# Extra environment status colours
+$script:ColorSuccess = [System.Drawing.Color]::FromArgb(34, 139, 34)
+$script:ColorError = [System.Drawing.Color]::FromArgb(178, 34, 34)
+
 # ---------------- DARK THEME ----------------
 $script:DarkColorBg = [System.Drawing.Color]::FromArgb(30, 32, 36)
 $script:DarkColorPanel = [System.Drawing.Color]::FromArgb(39, 42, 47)
@@ -67,6 +90,11 @@ $script:DarkColorLogSuccess = [System.Drawing.Color]::FromArgb(88, 214, 141)
 $script:DarkColorLogWarning = [System.Drawing.Color]::FromArgb(244, 208, 63)
 $script:DarkColorLogError = [System.Drawing.Color]::FromArgb(236, 112, 99)
 
+# Extra environment status colours
+$script:DarkColorSuccess = [System.Drawing.Color]::FromArgb(88, 214, 141)
+$script:DarkColorError = [System.Drawing.Color]::FromArgb(236, 112, 99)
+
+# ---------------- MAIN FORM ----------------
 $form = New-Object System.Windows.Forms.Form
 $form.Text = $script:AppTitle
 $form.StartPosition = 'CenterScreen'

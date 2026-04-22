@@ -45,6 +45,7 @@ $btnSettings.Add_Click({
 
 $btnAutoDetectPaths.Add_Click({
     Auto-DetectPaths
+    Update-EnvironmentStatus
 })
 
 $btnBrowseJavaHome.Add_Click({
@@ -54,6 +55,7 @@ $btnBrowseJavaHome.Add_Click({
         $script:JavaHomePath = $picked
         Save-Settings $txtFolder.Text.Trim() $txtProject.Text.Trim() $txtAppName.Text.Trim() (Get-RealAppIdValue) $false $script:LastProjectPath $script:UseLatestCapacitor $script:BuildApkAfterSetup $script:form.Width $script:form.Height $script:form.Left $script:form.Top $script:form.WindowState.ToString()
         Update-LiveValidationPanel
+        Update-EnvironmentStatus
     }
 })
 
@@ -64,6 +66,7 @@ $btnBrowseAndroidSdk.Add_Click({
         $script:AndroidSdkPath = $picked
         Save-Settings $txtFolder.Text.Trim() $txtProject.Text.Trim() $txtAppName.Text.Trim() (Get-RealAppIdValue) $false $script:LastProjectPath $script:UseLatestCapacitor $script:BuildApkAfterSetup $script:form.Width $script:form.Height $script:form.Left $script:form.Top $script:form.WindowState.ToString()
         Update-LiveValidationPanel
+        Update-EnvironmentStatus
     }
 })
 
@@ -109,6 +112,60 @@ $btnExportLog.Add_Click({
 
 $btnRun.Add_Click({
     Start-ProjectBuild
+})
+
+$btnScanEnvironment.Add_Click({
+    Update-EnvironmentStatus
+})
+
+$btnOpenSdkFolder.Add_Click({
+    Open-CurrentSdkFolder
+})
+
+$btnDownloadJdk.Add_Click({
+    Open-JdkDownloadPage
+})
+
+$btnDownloadAndroidTools.Add_Click({
+    Open-AndroidToolsDownloadPage
+})
+
+$btnInstallSdkPackages.Add_Click({
+    try {
+        $sdkStatus = Test-AndroidSdkEnvironment $script:AndroidSdkPath
+
+        if (-not $sdkStatus.SdkFound) {
+            [System.Windows.Forms.MessageBox]::Show(
+                'Select a valid Android SDK path first.',
+                'Install Required SDK Packages',
+                [System.Windows.Forms.MessageBoxButtons]::OK,
+                [System.Windows.Forms.MessageBoxIcon]::Warning
+            ) | Out-Null
+            return
+        }
+
+        if (-not $sdkStatus.CmdlineToolsFound -or [string]::IsNullOrWhiteSpace($sdkStatus.SdkManagerPath)) {
+            [System.Windows.Forms.MessageBox]::Show(
+                'Automatic SDK package installation is not available right now.' + [Environment]::NewLine + [Environment]::NewLine +
+                'Your current Android SDK already appears usable for builds.' + [Environment]::NewLine +
+                'This button only works when Android command-line tools (sdkmanager) are available in the selected SDK path.',
+                'Install Required SDK Packages',
+                [System.Windows.Forms.MessageBoxButtons]::OK,
+                [System.Windows.Forms.MessageBoxIcon]::Information
+            ) | Out-Null
+            return
+        }
+
+        Install-RequiredSdkPackages
+    }
+    catch {
+        [System.Windows.Forms.MessageBox]::Show(
+            $_.Exception.Message,
+            'Install Required SDK Packages Failed',
+            [System.Windows.Forms.MessageBoxButtons]::OK,
+            [System.Windows.Forms.MessageBoxIcon]::Error
+        ) | Out-Null
+    }
 })
 
 $txtFolder.Add_TextChanged({
@@ -173,6 +230,7 @@ $txtJavaHome.Add_TextChanged({
     if ($script:WindowStateLoaded) {
         Save-Settings $txtFolder.Text.Trim() $txtProject.Text.Trim() $txtAppName.Text.Trim() (Get-RealAppIdValue) $false $script:LastProjectPath $script:UseLatestCapacitor $script:BuildApkAfterSetup $script:form.Width $script:form.Height $script:form.Left $script:form.Top $script:form.WindowState.ToString()
         Update-LiveValidationPanel
+        Update-EnvironmentStatus
     }
 })
 
@@ -181,6 +239,7 @@ $txtAndroidSdk.Add_TextChanged({
     if ($script:WindowStateLoaded) {
         Save-Settings $txtFolder.Text.Trim() $txtProject.Text.Trim() $txtAppName.Text.Trim() (Get-RealAppIdValue) $false $script:LastProjectPath $script:UseLatestCapacitor $script:BuildApkAfterSetup $script:form.Width $script:form.Height $script:form.Left $script:form.Top $script:form.WindowState.ToString()
         Update-LiveValidationPanel
+        Update-EnvironmentStatus
     }
 })
 

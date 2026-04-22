@@ -48,6 +48,7 @@ try {
     . (Join-Path $script:AppBasePath 'Files\Assets.ps1')
     . (Join-Path $script:AppBasePath 'Build\Validation.ps1')
     . (Join-Path $script:AppBasePath 'Build\BuildRunner.ps1')
+    . (Join-Path $script:AppBasePath 'Build\EnvironmentSetup.ps1')
     . (Join-Path $script:AppBasePath 'Build\ProjectBuild.ps1')
     . (Join-Path $script:AppBasePath 'UI\Controls.ps1')
     . (Join-Path $script:AppBasePath 'UI\Dialogs.ps1')
@@ -69,7 +70,8 @@ try {
         'Update-BuildButtonState',
         'Update-ActionButtonsState',
         'Show-HelpDialog',
-        'Invoke-CheckForUpdates'
+        'Invoke-CheckForUpdates',
+        'Update-EnvironmentStatus'
     )
 
     foreach ($fn in $requiredFunctions) {
@@ -91,6 +93,26 @@ try {
     if (Get-Command Update-ExportLogButtonState -ErrorAction SilentlyContinue) {
         Update-ExportLogButtonState
     }
+
+    if (Get-Command Update-EnvironmentStatus -ErrorAction SilentlyContinue) {
+        Update-EnvironmentStatus
+    }
+
+    $script:form.Add_Shown({
+        try {
+            if ((-not $script:JavaHomePath) -or (-not $script:AndroidSdkPath)) {
+                if (Get-Command Auto-DetectPaths -ErrorAction SilentlyContinue) {
+                    Auto-DetectPaths
+                }
+
+                if (Get-Command Update-EnvironmentStatus -ErrorAction SilentlyContinue) {
+                    Update-EnvironmentStatus
+                }
+            }
+        }
+        catch {
+        }
+    })
 
     $script:form.Add_Shown({
         try {

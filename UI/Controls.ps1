@@ -4,15 +4,15 @@ $headerH = 78
 
 $topCardsY = 95
 $cardW = 455
-$cardH = 455
+$cardH = 615
 $leftCardX = 20
 $rightCardX = 495
 
-$logCardY = 560
-$logCardH = 100
-$logBoxH = 16
+$logCardY = 620
+$logCardH = 145
+$logBoxH = 58
 
-$footerY = 668
+$footerY = 772
 $footerH = 58
 
 # ---------------- HEADER ----------------
@@ -363,6 +363,92 @@ $btnClearAll.Location = New-Object System.Drawing.Point(356, 408)
 $btnClearAll.Size = New-Object System.Drawing.Size(80, 28)
 Style-Button -Button $btnClearAll -BackColor $script:ColorButton -ForeColor $script:ColorText
 $rightCard.Controls.Add($btnClearAll)
+
+# ---------------- ENVIRONMENT SETUP ----------------
+$envGroup = New-Object System.Windows.Forms.GroupBox
+$envGroup.Text = 'Environment Setup'
+$envGroup.Location = New-Object System.Drawing.Point(560, 118)
+$envGroup.Size = New-Object System.Drawing.Size(560, 255)
+$envGroup.ForeColor = if ($script:IsDarkMode) { $script:DarkColorText } else { $script:ColorText }
+$envGroup.BackColor = if ($script:IsDarkMode) { $script:DarkColorPanel } else { $script:ColorPanel }
+$rightCard.Controls.Add($envGroup)
+
+$lblEnvJavaStatus = New-Object System.Windows.Forms.Label
+$lblEnvJavaStatus.Text = 'Java JDK: Not found'
+$lblEnvJavaStatus.Location = New-Object System.Drawing.Point(14, 26)
+$lblEnvJavaStatus.Size = New-Object System.Drawing.Size(220, 20)
+Style-Label -Label $lblEnvJavaStatus -Size 9
+$envGroup.Controls.Add($lblEnvJavaStatus)
+
+$lblEnvSdkStatus = New-Object System.Windows.Forms.Label
+$lblEnvSdkStatus.Text = 'Android SDK: Not found'
+$lblEnvSdkStatus.Location = New-Object System.Drawing.Point(14, 48)
+$lblEnvSdkStatus.Size = New-Object System.Drawing.Size(220, 20)
+Style-Label -Label $lblEnvSdkStatus -Size 9
+$envGroup.Controls.Add($lblEnvSdkStatus)
+
+$lblEnvPlatformToolsStatus = New-Object System.Windows.Forms.Label
+$lblEnvPlatformToolsStatus.Text = 'Platform Tools: Not found'
+$lblEnvPlatformToolsStatus.Location = New-Object System.Drawing.Point(265, 26)
+$lblEnvPlatformToolsStatus.Size = New-Object System.Drawing.Size(220, 20)
+Style-Label -Label $lblEnvPlatformToolsStatus -Size 9
+$envGroup.Controls.Add($lblEnvPlatformToolsStatus)
+
+$lblEnvBuildToolsStatus = New-Object System.Windows.Forms.Label
+$lblEnvBuildToolsStatus.Text = 'Build Tools: Not found'
+$lblEnvBuildToolsStatus.Location = New-Object System.Drawing.Point(265, 48)
+$lblEnvBuildToolsStatus.Size = New-Object System.Drawing.Size(220, 20)
+Style-Label -Label $lblEnvBuildToolsStatus -Size 9
+$envGroup.Controls.Add($lblEnvBuildToolsStatus)
+
+$lblEnvCmdlineStatus = New-Object System.Windows.Forms.Label
+$lblEnvCmdlineStatus.Text = 'Command-Line Tools: Optional - not found'
+$lblEnvCmdlineStatus.Location = New-Object System.Drawing.Point(14, 72)
+$lblEnvCmdlineStatus.Size = New-Object System.Drawing.Size(330, 20)
+Style-Label -Label $lblEnvCmdlineStatus -Size 9
+$envGroup.Controls.Add($lblEnvCmdlineStatus)
+
+$btnScanEnvironment = New-Object System.Windows.Forms.Button
+$btnScanEnvironment.Text = 'Scan Environment'
+$btnScanEnvironment.Location = New-Object System.Drawing.Point(14, 102)
+$btnScanEnvironment.Size = New-Object System.Drawing.Size(135, 30)
+Style-Button -Button $btnScanEnvironment -BackColor $script:ColorButton -ForeColor $script:ColorText
+$envGroup.Controls.Add($btnScanEnvironment)
+
+$btnOpenSdkFolder = New-Object System.Windows.Forms.Button
+$btnOpenSdkFolder.Text = 'Open SDK Folder'
+$btnOpenSdkFolder.Location = New-Object System.Drawing.Point(157, 102)
+$btnOpenSdkFolder.Size = New-Object System.Drawing.Size(135, 30)
+Style-Button -Button $btnOpenSdkFolder -BackColor $script:ColorButton -ForeColor $script:ColorText
+$envGroup.Controls.Add($btnOpenSdkFolder)
+
+$btnDownloadJdk = New-Object System.Windows.Forms.Button
+$btnDownloadJdk.Text = 'Download JDK'
+$btnDownloadJdk.Location = New-Object System.Drawing.Point(14, 138)
+$btnDownloadJdk.Size = New-Object System.Drawing.Size(278, 30)
+Style-Button -Button $btnDownloadJdk -BackColor $script:ColorButton -ForeColor $script:ColorText
+$envGroup.Controls.Add($btnDownloadJdk)
+
+$btnDownloadAndroidTools = New-Object System.Windows.Forms.Button
+$btnDownloadAndroidTools.Text = 'Download Android Studio'
+$btnDownloadAndroidTools.Location = New-Object System.Drawing.Point(14, 174)
+$btnDownloadAndroidTools.Size = New-Object System.Drawing.Size(278, 30)
+Style-Button -Button $btnDownloadAndroidTools -BackColor $script:ColorButton -ForeColor $script:ColorText
+$envGroup.Controls.Add($btnDownloadAndroidTools)
+
+$btnInstallSdkPackages = New-Object System.Windows.Forms.Button
+$btnInstallSdkPackages.Text = 'Install Required SDK Packages'
+$btnInstallSdkPackages.Location = New-Object System.Drawing.Point(14, 210)
+$btnInstallSdkPackages.Size = New-Object System.Drawing.Size(278, 30)
+Style-AccentButton $btnInstallSdkPackages
+$envGroup.Controls.Add($btnInstallSdkPackages)
+
+$lblEnvHelp = New-Object System.Windows.Forms.Label
+$lblEnvHelp.Text = 'Environment looks ready for builds. Command-line tools are optional unless you want this app to install SDK packages for you.'
+$lblEnvHelp.Location = New-Object System.Drawing.Point(312, 108)
+$lblEnvHelp.Size = New-Object System.Drawing.Size(225, 120)
+Style-Label -Label $lblEnvHelp -Muted $true -Size 8.5
+$envGroup.Controls.Add($lblEnvHelp)
 
 # ---------------- LOG CARD ----------------
 $logCard = New-CardPanel -X 20 -Y $logCardY -W 930 -H $logCardH

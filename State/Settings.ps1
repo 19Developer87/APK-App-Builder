@@ -60,24 +60,25 @@ function Save-Settings {
         $script:SettingsPath = Get-SettingsFilePath
 
         $settings = [ordered]@{
-            BaseFolder          = $BaseFolder
-            ProjectName         = $ProjectName
-            AppName             = $AppName
-            AppId               = $AppId
-            AskAssets           = $AskAssets
-            LastProjectPath     = $LastProjectPath
-            DarkMode            = [bool]$script:IsDarkMode
-            UseLatestCapacitor  = $UseLatestCapacitor
-            BuildApkAfterSetup  = $BuildApkAfterSetup
-            JavaHomePath        = $script:JavaHomePath
-            AndroidSdkPath      = $script:AndroidSdkPath
-            SelectedIndexFile   = $script:SelectedIndexFile
-            SelectedPngFiles    = $script:SelectedPngFiles
-            WindowWidth         = $WindowWidth
-            WindowHeight        = $WindowHeight
-            WindowLeft          = $WindowLeft
-            WindowTop           = $WindowTop
-            WindowState         = $WindowState
+            BaseFolder             = $BaseFolder
+            ProjectName            = $ProjectName
+            AppName                = $AppName
+            AppId                  = $AppId
+            AskAssets              = $AskAssets
+            LastProjectPath        = $LastProjectPath
+            DarkMode               = [bool]$script:IsDarkMode
+            UseLatestCapacitor     = $UseLatestCapacitor
+            BuildApkAfterSetup     = $BuildApkAfterSetup
+            JavaHomePath           = $script:JavaHomePath
+            AndroidSdkPath         = $script:AndroidSdkPath
+            SelectedIndexFile      = $script:SelectedIndexFile
+            SelectedPngFiles       = $script:SelectedPngFiles
+            AutoCheckUpdates       = [bool]$script:AutoCheckUpdatesOnStartup
+            WindowWidth            = $WindowWidth
+            WindowHeight           = $WindowHeight
+            WindowLeft             = $WindowLeft
+            WindowTop              = $WindowTop
+            WindowState            = $WindowState
         }
 
         $json = $settings | ConvertTo-Json -Depth 6
@@ -115,6 +116,10 @@ function Load-Settings {
 
             if (Get-Command Apply-Theme -ErrorAction SilentlyContinue) {
                 Apply-Theme $script:IsDarkMode
+            }
+
+            if (Get-Command Update-EnvironmentStatus -ErrorAction SilentlyContinue) {
+                Update-EnvironmentStatus
             }
 
             return
@@ -180,6 +185,10 @@ function Load-Settings {
             $script:SelectedPngFiles = @{}
         }
 
+        if ($null -ne $settings.AutoCheckUpdates) {
+            $script:AutoCheckUpdatesOnStartup = [bool]$settings.AutoCheckUpdates
+        }
+
         $appIdValue = $null
         if ($null -ne $settings.AppId) {
             $appIdValue = [string]$settings.AppId
@@ -241,6 +250,10 @@ function Load-Settings {
             Apply-Theme $script:IsDarkMode
         }
 
+        if (Get-Command Update-EnvironmentStatus -ErrorAction SilentlyContinue) {
+            Update-EnvironmentStatus
+        }
+
         if ($form -and $settings.WindowState) {
             try {
                 $savedState = [string]$settings.WindowState
@@ -266,6 +279,14 @@ function Load-Settings {
         try {
             if (Get-Command Apply-Theme -ErrorAction SilentlyContinue) {
                 Apply-Theme $script:IsDarkMode
+            }
+        }
+        catch {
+        }
+
+        try {
+            if (Get-Command Update-EnvironmentStatus -ErrorAction SilentlyContinue) {
+                Update-EnvironmentStatus
             }
         }
         catch {
