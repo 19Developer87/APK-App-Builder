@@ -25,12 +25,43 @@ function Apply-AccentButtonTheme {
         if (-not $btn) { continue }
 
         $btn.FlatAppearance.BorderSize = 0
+
         if ($script:IsDarkMode) {
             $btn.BackColor = $script:DarkColorAccent
             $btn.ForeColor = [System.Drawing.Color]::White
         } else {
             $btn.BackColor = $script:ColorAccent
             $btn.ForeColor = [System.Drawing.Color]::White
+        }
+    }
+}
+
+function Apply-EnvironmentSetupTheme {
+    if (-not $script:EnvGroup) { return }
+
+    $envBack = if ($script:IsDarkMode) { $script:DarkColorLogBg } else { $script:ColorLogBg }
+    $envText = if ($script:IsDarkMode) { $script:DarkColorText } else { $script:ColorText }
+    $envMuted = if ($script:IsDarkMode) { $script:DarkColorMutedText } else { $script:ColorMutedText }
+
+    $script:EnvGroup.BackColor = $envBack
+    $script:EnvGroup.ForeColor = $envText
+
+    foreach ($ctrl in $script:EnvGroup.Controls) {
+        if ($ctrl -is [System.Windows.Forms.Label]) {
+            $ctrl.BackColor = $envBack
+
+            if ($ctrl.Name -eq 'lblEnvHelp') {
+                $ctrl.ForeColor = $envMuted
+            }
+        }
+
+        if ($ctrl -is [System.Windows.Forms.Button]) {
+            if ($ctrl.Text -eq 'Install Required SDK Packages') {
+                Apply-AccentButtonTheme @($ctrl)
+            }
+            else {
+                Apply-StandardButtonTheme @($ctrl)
+            }
         }
     }
 }
@@ -71,7 +102,10 @@ function Apply-Theme {
             $lbl.BackColor = [System.Drawing.Color]::Transparent
         }
 
-        foreach ($lbl in @($lblSubtitle, $lblBaseFolder, $lblProject, $lblAppName, $lblAppId, $lblProgress, $lblJavaHome, $lblAndroidSdk, $lblJavaHomeHint, $lblAndroidSdkHint)) {
+        foreach ($lbl in @(
+            $lblSubtitle, $lblBaseFolder, $lblProject, $lblAppName, $lblAppId,
+            $lblProgress, $lblJavaHome, $lblAndroidSdk, $lblJavaHomeHint, $lblAndroidSdkHint
+        )) {
             if (-not $lbl) { continue }
             $lbl.ForeColor = $script:DarkColorMutedText
             $lbl.BackColor = [System.Drawing.Color]::Transparent
@@ -85,6 +119,7 @@ function Apply-Theme {
             $btnBrowseJavaHome, $btnBrowseAndroidSdk, $btnAutoDetectPaths, $btnClearAll,
             $btnOpenProject, $btnOpenAndroid, $btnOpenApkFolder, $btnExportLog, $btnInstallApk
         )
+
         Apply-AccentButtonTheme @($btnRun)
     }
     else {
@@ -118,7 +153,10 @@ function Apply-Theme {
             $lbl.BackColor = [System.Drawing.Color]::Transparent
         }
 
-        foreach ($lbl in @($lblSubtitle, $lblBaseFolder, $lblProject, $lblAppName, $lblAppId, $lblProgress, $lblJavaHome, $lblAndroidSdk, $lblJavaHomeHint, $lblAndroidSdkHint)) {
+        foreach ($lbl in @(
+            $lblSubtitle, $lblBaseFolder, $lblProject, $lblAppName, $lblAppId,
+            $lblProgress, $lblJavaHome, $lblAndroidSdk, $lblJavaHomeHint, $lblAndroidSdkHint
+        )) {
             if (-not $lbl) { continue }
             $lbl.ForeColor = $script:ColorMutedText
             $lbl.BackColor = [System.Drawing.Color]::Transparent
@@ -132,8 +170,11 @@ function Apply-Theme {
             $btnBrowseJavaHome, $btnBrowseAndroidSdk, $btnAutoDetectPaths, $btnClearAll,
             $btnOpenProject, $btnOpenAndroid, $btnOpenApkFolder, $btnExportLog, $btnInstallApk
         )
+
         Apply-AccentButtonTheme @($btnRun)
     }
+
+    Apply-EnvironmentSetupTheme
 
     if ($txtAppId -and $txtAppId.Tag -eq 'PLACEHOLDER') {
         $txtAppId.ForeColor = Get-AppIdPlaceholderColor

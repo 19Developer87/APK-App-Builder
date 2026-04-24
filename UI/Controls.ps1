@@ -4,7 +4,7 @@ $headerH = 78
 
 $topCardsY = 95
 $cardW = 455
-$cardH = 615
+$cardH = 520
 $leftCardX = 20
 $rightCardX = 495
 
@@ -365,89 +365,119 @@ Style-Button -Button $btnClearAll -BackColor $script:ColorButton -ForeColor $scr
 $rightCard.Controls.Add($btnClearAll)
 
 # ---------------- ENVIRONMENT SETUP ----------------
-$envGroup = New-Object System.Windows.Forms.GroupBox
-$envGroup.Text = 'Environment Setup'
-$envGroup.Location = New-Object System.Drawing.Point(560, 118)
-$envGroup.Size = New-Object System.Drawing.Size(560, 255)
-$envGroup.ForeColor = if ($script:IsDarkMode) { $script:DarkColorText } else { $script:ColorText }
-$envGroup.BackColor = if ($script:IsDarkMode) { $script:DarkColorPanel } else { $script:ColorPanel }
-$rightCard.Controls.Add($envGroup)
+$envBack = if ($script:IsDarkMode) { $script:DarkColorLogBg } else { $script:ColorLogBg }
+$envText = if ($script:IsDarkMode) { $script:DarkColorText } else { $script:ColorText }
+$envMuted = if ($script:IsDarkMode) { $script:DarkColorMutedText } else { $script:ColorMutedText }
+$envButtonBack = if ($script:IsDarkMode) { $script:DarkColorButton } else { $script:ColorButton }
+$envButtonFore = if ($script:IsDarkMode) { $script:DarkColorText } else { $script:ColorText }
 
+$script:EnvGroup = New-Object System.Windows.Forms.Panel
+$script:EnvGroup.Location = New-Object System.Drawing.Point(560, 118)
+$script:EnvGroup.Size = New-Object System.Drawing.Size(430, 255)
+$script:EnvGroup.Anchor = 'Top,Left'
+$script:EnvGroup.BorderStyle = 'FixedSingle'
+$script:EnvGroup.BackColor = $envBack
+$script:EnvGroup.ForeColor = $envText
+$rightCard.Controls.Add($script:EnvGroup)
+
+$envGroup = $script:EnvGroup
+
+# -------- TITLE --------
+$lblEnvTitle = New-Object System.Windows.Forms.Label
+$lblEnvTitle.Text = 'Environment Setup'
+$lblEnvTitle.Location = New-Object System.Drawing.Point(10, 8)
+$lblEnvTitle.Size = New-Object System.Drawing.Size(180, 20)
+Style-Label -Label $lblEnvTitle -Size 9 -Bold $true
+$lblEnvTitle.BackColor = $envBack
+$lblEnvTitle.ForeColor = $envText
+$envGroup.Controls.Add($lblEnvTitle)
+
+# -------- STATUS LABELS --------
 $lblEnvJavaStatus = New-Object System.Windows.Forms.Label
 $lblEnvJavaStatus.Text = 'Java JDK: Not found'
-$lblEnvJavaStatus.Location = New-Object System.Drawing.Point(14, 26)
-$lblEnvJavaStatus.Size = New-Object System.Drawing.Size(220, 20)
+$lblEnvJavaStatus.Location = New-Object System.Drawing.Point(14, 36)
+$lblEnvJavaStatus.Size = New-Object System.Drawing.Size(170, 20)
 Style-Label -Label $lblEnvJavaStatus -Size 9
+$lblEnvJavaStatus.BackColor = $envBack
 $envGroup.Controls.Add($lblEnvJavaStatus)
 
 $lblEnvSdkStatus = New-Object System.Windows.Forms.Label
 $lblEnvSdkStatus.Text = 'Android SDK: Not found'
-$lblEnvSdkStatus.Location = New-Object System.Drawing.Point(14, 48)
-$lblEnvSdkStatus.Size = New-Object System.Drawing.Size(220, 20)
+$lblEnvSdkStatus.Location = New-Object System.Drawing.Point(14, 58)
+$lblEnvSdkStatus.Size = New-Object System.Drawing.Size(170, 20)
 Style-Label -Label $lblEnvSdkStatus -Size 9
+$lblEnvSdkStatus.BackColor = $envBack
 $envGroup.Controls.Add($lblEnvSdkStatus)
 
 $lblEnvPlatformToolsStatus = New-Object System.Windows.Forms.Label
 $lblEnvPlatformToolsStatus.Text = 'Platform Tools: Not found'
-$lblEnvPlatformToolsStatus.Location = New-Object System.Drawing.Point(265, 26)
-$lblEnvPlatformToolsStatus.Size = New-Object System.Drawing.Size(220, 20)
+$lblEnvPlatformToolsStatus.Location = New-Object System.Drawing.Point(185, 36)
+$lblEnvPlatformToolsStatus.Size = New-Object System.Drawing.Size(200, 20)
 Style-Label -Label $lblEnvPlatformToolsStatus -Size 9
+$lblEnvPlatformToolsStatus.BackColor = $envBack
 $envGroup.Controls.Add($lblEnvPlatformToolsStatus)
 
 $lblEnvBuildToolsStatus = New-Object System.Windows.Forms.Label
 $lblEnvBuildToolsStatus.Text = 'Build Tools: Not found'
-$lblEnvBuildToolsStatus.Location = New-Object System.Drawing.Point(265, 48)
-$lblEnvBuildToolsStatus.Size = New-Object System.Drawing.Size(220, 20)
+$lblEnvBuildToolsStatus.Location = New-Object System.Drawing.Point(185, 58)
+$lblEnvBuildToolsStatus.Size = New-Object System.Drawing.Size(200, 20)
 Style-Label -Label $lblEnvBuildToolsStatus -Size 9
+$lblEnvBuildToolsStatus.BackColor = $envBack
 $envGroup.Controls.Add($lblEnvBuildToolsStatus)
 
 $lblEnvCmdlineStatus = New-Object System.Windows.Forms.Label
 $lblEnvCmdlineStatus.Text = 'Command-Line Tools: Optional - not found'
-$lblEnvCmdlineStatus.Location = New-Object System.Drawing.Point(14, 72)
-$lblEnvCmdlineStatus.Size = New-Object System.Drawing.Size(330, 20)
+$lblEnvCmdlineStatus.Location = New-Object System.Drawing.Point(14, 82)
+$lblEnvCmdlineStatus.Size = New-Object System.Drawing.Size(300, 20)
 Style-Label -Label $lblEnvCmdlineStatus -Size 9
+$lblEnvCmdlineStatus.BackColor = $envBack
 $envGroup.Controls.Add($lblEnvCmdlineStatus)
 
+# -------- BUTTONS --------
 $btnScanEnvironment = New-Object System.Windows.Forms.Button
 $btnScanEnvironment.Text = 'Scan Environment'
-$btnScanEnvironment.Location = New-Object System.Drawing.Point(14, 102)
+$btnScanEnvironment.Location = New-Object System.Drawing.Point(14, 112)
 $btnScanEnvironment.Size = New-Object System.Drawing.Size(135, 30)
-Style-Button -Button $btnScanEnvironment -BackColor $script:ColorButton -ForeColor $script:ColorText
+Style-Button -Button $btnScanEnvironment -BackColor $envButtonBack -ForeColor $envButtonFore
 $envGroup.Controls.Add($btnScanEnvironment)
 
 $btnOpenSdkFolder = New-Object System.Windows.Forms.Button
 $btnOpenSdkFolder.Text = 'Open SDK Folder'
-$btnOpenSdkFolder.Location = New-Object System.Drawing.Point(157, 102)
+$btnOpenSdkFolder.Location = New-Object System.Drawing.Point(157, 112)
 $btnOpenSdkFolder.Size = New-Object System.Drawing.Size(135, 30)
-Style-Button -Button $btnOpenSdkFolder -BackColor $script:ColorButton -ForeColor $script:ColorText
+Style-Button -Button $btnOpenSdkFolder -BackColor $envButtonBack -ForeColor $envButtonFore
 $envGroup.Controls.Add($btnOpenSdkFolder)
 
 $btnDownloadJdk = New-Object System.Windows.Forms.Button
 $btnDownloadJdk.Text = 'Download JDK'
-$btnDownloadJdk.Location = New-Object System.Drawing.Point(14, 138)
+$btnDownloadJdk.Location = New-Object System.Drawing.Point(14, 148)
 $btnDownloadJdk.Size = New-Object System.Drawing.Size(278, 30)
-Style-Button -Button $btnDownloadJdk -BackColor $script:ColorButton -ForeColor $script:ColorText
+Style-Button -Button $btnDownloadJdk -BackColor $envButtonBack -ForeColor $envButtonFore
 $envGroup.Controls.Add($btnDownloadJdk)
 
 $btnDownloadAndroidTools = New-Object System.Windows.Forms.Button
 $btnDownloadAndroidTools.Text = 'Download Android Studio'
-$btnDownloadAndroidTools.Location = New-Object System.Drawing.Point(14, 174)
+$btnDownloadAndroidTools.Location = New-Object System.Drawing.Point(14, 184)
 $btnDownloadAndroidTools.Size = New-Object System.Drawing.Size(278, 30)
-Style-Button -Button $btnDownloadAndroidTools -BackColor $script:ColorButton -ForeColor $script:ColorText
+Style-Button -Button $btnDownloadAndroidTools -BackColor $envButtonBack -ForeColor $envButtonFore
 $envGroup.Controls.Add($btnDownloadAndroidTools)
 
 $btnInstallSdkPackages = New-Object System.Windows.Forms.Button
 $btnInstallSdkPackages.Text = 'Install Required SDK Packages'
-$btnInstallSdkPackages.Location = New-Object System.Drawing.Point(14, 210)
-$btnInstallSdkPackages.Size = New-Object System.Drawing.Size(278, 30)
+$btnInstallSdkPackages.Location = New-Object System.Drawing.Point(14, 220)
+$btnInstallSdkPackages.Size = New-Object System.Drawing.Size(278, 28)
 Style-AccentButton $btnInstallSdkPackages
 $envGroup.Controls.Add($btnInstallSdkPackages)
 
+# -------- HELP TEXT --------
 $lblEnvHelp = New-Object System.Windows.Forms.Label
+$lblEnvHelp.Name = 'lblEnvHelp'
 $lblEnvHelp.Text = 'Environment looks ready for builds. Command-line tools are optional unless you want this app to install SDK packages for you.'
-$lblEnvHelp.Location = New-Object System.Drawing.Point(312, 108)
-$lblEnvHelp.Size = New-Object System.Drawing.Size(225, 120)
+$lblEnvHelp.Location = New-Object System.Drawing.Point(305, 112)
+$lblEnvHelp.Size = New-Object System.Drawing.Size(110, 120)
 Style-Label -Label $lblEnvHelp -Muted $true -Size 8.5
+$lblEnvHelp.BackColor = $envBack
+$lblEnvHelp.ForeColor = $envMuted
 $envGroup.Controls.Add($lblEnvHelp)
 
 # ---------------- LOG CARD ----------------

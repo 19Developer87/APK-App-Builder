@@ -97,9 +97,13 @@ $script:DarkColorError = [System.Drawing.Color]::FromArgb(236, 112, 99)
 # ---------------- MAIN FORM ----------------
 $form = New-Object System.Windows.Forms.Form
 $form.Text = $script:AppTitle
+$iconPath = Join-Path $script:AppBasePath 'appicon.ico'
+if (Test-Path $iconPath) {
+    $form.Icon = New-Object System.Drawing.Icon($iconPath)
+}
 $form.StartPosition = 'CenterScreen'
 $form.Size = New-Object System.Drawing.Size(980, 900)
-$form.MinimumSize = New-Object System.Drawing.Size(980, 760)
+$form.MinimumSize = New-Object System.Drawing.Size(1030, 760)
 $form.BackColor = $script:ColorBg
 $form.ForeColor = $script:ColorText
 $form.Font = New-Object System.Drawing.Font('Segoe UI', 9)
